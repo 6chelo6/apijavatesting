@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'APITest'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.5'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.json', name: 'json', version: '20180130'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+}
