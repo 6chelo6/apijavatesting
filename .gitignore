@@ -1,0 +1,15 @@
+.iws/
+.ipr/
+.idea/
+.gradle/
+out/
+target/
+build/
+log/
+*.iml
+/cucumber-html-report/
+/classes/
+.allure/
+*.log
+allure-results/
+suite.xml
