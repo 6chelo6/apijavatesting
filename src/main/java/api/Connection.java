@@ -29,11 +29,37 @@ public class Connection {
     }
 
     /**
-     * This method encodes authetication Base64 with username:password value.
+     * This method is in charge to initialize the connection.
+     *
+     * @param token the APi Token information.
      */
-    private String getEncodedAuthentication() {
-        String originalInput = String.format("%s:%s", API_CONFIG.getUsername(), API_CONFIG.getPassword());
-        return Base64.getEncoder().encodeToString(originalInput.getBytes());
+    private Connection(final String token) {
+        requestSpecification = new RequestSpecBuilder().build();
+        requestSpecification.header(new Header("Authorization", "Basic " + token));
+    }
+
+    /**
+     * Restart the connection to change the API Token.
+     *
+     * @return a new connection.
+     */
+    public static Connection restartConnection() {
+        requestSpecification = new RequestSpecBuilder().build();
+        connection = new Connection();
+        return connection;
+    }
+
+    /**
+     * Create new connection with new token.
+     * Before creation save old headers in case you need to restore them (you can do it via new Connection())
+     *
+     * @param token the APi Token information.
+     * @return {@link Connection}
+     */
+    public static Connection setConnectionByToken(final String token) {
+        requestSpecification = new RequestSpecBuilder().build();
+        connection = new Connection(token);
+        return connection;
     }
 
     /**
@@ -49,11 +75,28 @@ public class Connection {
     }
 
     /**
+     * Gets request specification.
+     *
+     * @return {@link RequestSpecification}
+     */
+    public RequestSpecification getRequestSpecification() {
+        return requestSpecification;
+    }
+
+    /**
      * Adds header to the RequestSpecification.
      *
      * @param header is header.
      */
     public void addHeader(final Header header) {
         requestSpecification.header(header);
+    }
+
+    /**
+     * This method encodes authetication Base64 with username:password value.
+     */
+    private String getEncodedAuthentication() {
+        String originalInput = String.format("%s:%s", API_CONFIG.getUsername(), API_CONFIG.getPassword());
+        return Base64.getEncoder().encodeToString(originalInput.getBytes());
     }
 }

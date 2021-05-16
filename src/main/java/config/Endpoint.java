@@ -4,7 +4,8 @@ package config;
  * Endpoint enum.
  */
 public enum Endpoint {
-    TOKEN_FORMAT("/authentication/token.%s");
+    GET_TOKEN_FORMAT("/authentication/token.%s"),
+    GET_IS_AUTHENTICATED("/authentication/isauthenticated.%s");
 
     private String field;
 
