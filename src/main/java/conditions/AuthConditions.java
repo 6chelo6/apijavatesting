@@ -1,18 +1,16 @@
 package conditions;
 
-import api.RequestManager;
-import config.Endpoint;
+import config.ApiConfig;
 import enums.ClassEnum;
 import helpers.AuthHelper;
-import io.restassured.RestAssured;
-
-import java.net.Authenticator;
+import io.restassured.response.Response;
 
 /**
  * Class that manages Auth Conditions.
  */
 public class AuthConditions {
     private AuthHelper authHelper;
+    private static final ApiConfig API_CONFIG = ApiConfig.getInstance();
 
     /**
      * Constructor {@link AuthHelper} initializes class settings.
@@ -24,13 +22,22 @@ public class AuthConditions {
     /**
      * A method to get token for authentication given a username and password.
      *
-     * @param username username.
-     * @param password password.
+     * @param username value.
+     * @param password value.
      * @return The response.
      */
-    public String getAuthToken(final String username, final String password) {
-        RequestManager.setEndpoint(String.format(Endpoint.GET_TOKEN_FORMAT.get(), username, password));
-        return RequestManager.get().jsonPath().get("data.token");
+    public Response getAuthToken(final String username, final String password, final String format) {
+        return authHelper.getTokenByValues(username, password, format);
+    }
+
+    /**
+     * A method to get default token for authentication.
+     *
+     * @param format value.
+     * @return The response.
+     */
+    public Response getDefaultAuthToken(final String format) {
+        return authHelper.getDefaultToken(format);
     }
 
     /**
@@ -40,7 +47,6 @@ public class AuthConditions {
      * @return The response.
      */
     public boolean isAuthenticated(final String token) {
-        return authHelper.isAuthenticated(token);
+        return authHelper.isAuthenticated(token, ClassEnum.FORMAT_JSON.get());
     }
-
 }

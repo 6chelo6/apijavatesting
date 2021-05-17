@@ -3,6 +3,7 @@ package api;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
+import utils.Util;
 
 import static io.restassured.RestAssured.given;
 
@@ -28,12 +29,23 @@ public class RequestManager {
     }
 
     /**
-     * Restart the request specification values.
+     * Restart the request specification value with specified token.
      *
      * @param token The API token information.
      */
     public static void restartRequestSpecification(final String token) {
         requestSpecification = Connection.setConnectionByToken(token).getRequestSpecification();
+    }
+
+    /**
+     * Restart the request specification value with specified token.
+     *
+     * @param username value.
+     * @param password value.
+     */
+    public static void restartRequestSpecification(final String username, final String password) {
+        requestSpecification = Connection.setConnectionByToken(Util.getEncodedAuthentication(username, password))
+                .getRequestSpecification();
     }
 
     /**
