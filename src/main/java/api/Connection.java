@@ -1,12 +1,12 @@
 package api;
 
 import config.ApiConfig;
+import enums.ClassEnum;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Header;
 import io.restassured.specification.RequestSpecification;
-
-import java.util.Base64;
+import utils.Util;
 
 /**
  * Class to manage the connection to API.
@@ -25,7 +25,9 @@ public class Connection {
      */
     private Connection() {
         requestSpecification = new RequestSpecBuilder().build();
-        requestSpecification.header(new Header("Authorization", "Basic " + getEncodedAuthentication()));
+        requestSpecification.header(new Header(ClassEnum.AUTHORIZATION.get(),
+                String.format("Basic %s", Util.getEncodedAuthentication(
+                        API_CONFIG.getUsername(), API_CONFIG.getPassword()))));
     }
 
     /**
@@ -35,7 +37,7 @@ public class Connection {
      */
     private Connection(final String token) {
         requestSpecification = new RequestSpecBuilder().build();
-        requestSpecification.header(new Header("Authorization", "Basic " + token));
+        requestSpecification.header(new Header(ClassEnum.AUTHORIZATION.get(), String.format("Basic &s", token)));
     }
 
     /**
@@ -90,13 +92,5 @@ public class Connection {
      */
     public void addHeader(final Header header) {
         requestSpecification.header(header);
-    }
-
-    /**
-     * This method encodes authetication Base64 with username:password value.
-     */
-    private String getEncodedAuthentication() {
-        String originalInput = String.format("%s:%s", API_CONFIG.getUsername(), API_CONFIG.getPassword());
-        return Base64.getEncoder().encodeToString(originalInput.getBytes());
     }
 }

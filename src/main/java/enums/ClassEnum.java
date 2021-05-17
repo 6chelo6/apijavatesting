@@ -4,7 +4,9 @@ package enums;
  * Enum class to get the name of classes.
  */
 public enum ClassEnum {
-    FORMAT_JSON("json"),;
+    AUTHORIZATION("Authorization"),
+    FORMAT_XML("xml"),
+    FORMAT_JSON("json");
 
     private String field;
 
