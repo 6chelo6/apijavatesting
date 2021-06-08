@@ -49,4 +49,14 @@ public class AuthConditions {
     public boolean isAuthenticated(final String token) {
         return authHelper.isAuthenticated(token, ClassEnum.FORMAT_JSON.get());
     }
+
+    /**
+     * A method to delete token value.
+     *
+     * @param format value.
+     * @return The response.
+     */
+    public Response deleteToken(final String format) {
+        return authHelper.deleteToken(format);
+    }
 }

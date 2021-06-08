@@ -58,4 +58,14 @@ public class AuthHelper {
         return response;
     }
 
+    /**
+     * A method to verify if user is authenticated given a token value.
+     *
+     * @return The response.
+     */
+    public Response deleteToken(final String format) {
+        RequestManager.restartRequestSpecification();
+        RequestManager.setEndpoint(String.format(Endpoint.DELETE_TOKEN_FORMAT.get(), format));
+        return RequestManager.delete();
+    }
 }

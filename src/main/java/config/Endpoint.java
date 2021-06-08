@@ -6,7 +6,10 @@ package config;
 public enum Endpoint {
     DELETE_TOKEN_FORMAT("/authentication/token.%s"),
     GET_TOKEN_FORMAT("/authentication/token.%s"),
-    GET_IS_AUTHENTICATED("/authentication/isauthenticated.%s");
+    GET_IS_AUTHENTICATED("/authentication/isauthenticated.%s"),
+
+    // PROJECT endpoints
+    POST_PROJECT("/projects.%s");
 
     private String field;
 

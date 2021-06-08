@@ -1,14 +1,14 @@
 package api;
 
+import com.google.gson.Gson;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.log4j.Logger;
 import utils.Util;
 
 import static io.restassured.RestAssured.given;
 
 public class RequestManager {
-    private static final Logger LOGGER = Logger.getLogger(RequestManager.class);
     private static String endPoint;
     private static RequestSpecification requestSpecification = Connection.getInstance().getRequestSpecification();
 
@@ -61,10 +61,34 @@ public class RequestManager {
      * @return response of the request.
      */
     public static Response get() {
-        final Response response = given().spec(requestSpecification)
+        return given().spec(requestSpecification)
                 .when()
                 .get(endPoint);
-        return response;
     }
 
+    /**
+     * Method that execute a post account request given an object as a data.
+     *
+     * @param body data to be send as params.
+     * @return response of the request.
+     */
+    public static Response post(final Object body) {
+        final String json = new Gson().toJson(body);
+        return given().spec(requestSpecification)
+                .contentType(ContentType.JSON)
+                .body(json)
+                .when()
+                .post(endPoint);
+    }
+
+    /**
+     * Method that execute a get request.
+     *
+     * @return response of the request.
+     */
+    public static Response delete() {
+        return given().spec(requestSpecification)
+                .when()
+                .delete(endPoint);
+    }
 }
