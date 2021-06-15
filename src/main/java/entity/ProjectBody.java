@@ -9,7 +9,11 @@ import com.google.gson.annotations.SerializedName;
 public class ProjectBody {
     @SerializedName("Content")
     private String content;
+    @SerializedName("Icon")
     private byte icon;
+
+    public ProjectBody() {
+    }
 
     private ProjectBody(ProjectBodyBuilder builder) {
         this.content = builder.content;

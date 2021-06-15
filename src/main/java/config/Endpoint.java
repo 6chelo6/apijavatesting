@@ -9,7 +9,9 @@ public enum Endpoint {
     GET_IS_AUTHENTICATED("/authentication/isauthenticated.%s"),
 
     // PROJECT endpoints
-    POST_PROJECT("/projects.%s");
+    POST_PROJECT("/projects.%s"),
+    GET_ALL_PROJECTS("/projects.%s"),
+    DELETE_PROJECT("/projects/%s.%s");
 
     private String field;
 
