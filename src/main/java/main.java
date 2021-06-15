@@ -1,11 +1,22 @@
 import conditions.AuthConditions;
 import conditions.ProjectConditions;
+import entity.Project;
 import enums.ClassEnum;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
+import utils.EnvUtils;
 
+/**
+ * Manages Main class.
+ */
 public class main {
     private static final Logger LOGGER = Logger.getLogger(main.class);
 
+    /**
+     * Main method.
+     *
+     * @param args arguments
+     */
     public static void main(String args[]) {
         LOGGER.info("Hello, WOrld!");
 
@@ -31,7 +42,20 @@ public class main {
 
         // POST PROJECT
         final ProjectConditions projectConditions = new ProjectConditions();
-        LOGGER.info(String.format("Response post project: %s", projectConditions.post(ClassEnum.FORMAT_JSON.get())
+        Response response = projectConditions.post(ClassEnum.FORMAT_JSON.get());
+        final Project createdProject = EnvUtils.getInstance().convertToEntity(response.asString(), Project.class);
+        LOGGER.info(String.format("Response post project: %s", response.asString()));
+
+        // GET ALL PROJECTS
+        LOGGER.info(String.format("Response get all projects: %s", projectConditions.getAll(ClassEnum.FORMAT_JSON.get())
                 .asString()));
+
+        // DELETE PROJECT
+        final String projectId = String.valueOf(createdProject.getId());
+        response = projectConditions.delete(projectId, ClassEnum.FORMAT_JSON.get());
+        LOGGER.info(String.format("Response delete project: %s", response.asString()));
+        // Validate project isDeleted
+        final Project deletedProject = EnvUtils.getInstance().convertToEntity(response.asString(), Project.class);
+        LOGGER.info(String.format("Deleted project <%s>: %s", deletedProject.getId(), deletedProject.isDeleted()));
     }
 }

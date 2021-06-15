@@ -18,7 +18,6 @@ public class ProjectConditions {
         projectHelper = new ProjectHelper();
     }
 
-
     /**
      * A method to post new project.
      *
@@ -26,6 +25,24 @@ public class ProjectConditions {
      */
     public Response post(final String format) {
         final ProjectBody projectBody = new ProjectBody.ProjectBodyBuilder().build();
-        return projectHelper.post(projectBody, ClassEnum.FORMAT_JSON.get());
+        return projectHelper.post(projectBody, format);
+    }
+
+    /**
+     * A method to get all projects.
+     *
+     * @return The response.
+     */
+    public Response getAll(final String format) {
+        return projectHelper.getAll(format);
+    }
+
+    /**
+     * A method to get all projects.
+     *
+     * @return The response.
+     */
+    public Response delete(final String id, final String format) {
+        return projectHelper.delete(id, format);
     }
 }
