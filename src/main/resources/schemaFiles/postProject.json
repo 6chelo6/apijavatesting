@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "The Post Project schema",
+  "additionalProperties": false,
+  "required": [
+    "Id",
+    "Content",
+    "ItemsCount",
+    "Icon",
+    "ItemType",
+    "ParentId",
+    "Collapsed",
+    "ItemOrder",
+    "Children",
+    "IsProjectShared",
+    "ProjectShareOwnerName",
+    "ProjectShareOwnerEmail",
+    "IsShareApproved",
+    "IsOwnProject",
+    "LastSyncedDateTime",
+    "LastUpdatedDate",
+    "Deleted",
+    "SyncClientCreationId"
+  ],
+  "properties": {
+    "Id": {
+      "$id": "#/properties/Id",
+      "type": "number",
+      "title": "The Id schema"
+    },
+    "Content": {
+      "$id": "#/properties/Content",
+      "type": "string",
+      "title": "The Content schema"
+    },
+    "ItemsCount": {
+      "$id": "#/properties/ItemsCount",
+      "type": "number",
+      "title": "The ItemsCount schema"
+    },
+    "Icon": {
+      "$id": "#/properties/Icon",
+      "type": "number",
+      "title": "The Icon schema"
+    },
+    "ItemType": {
+      "$id": "#/properties/ItemType",
+      "type": "number",
+      "title": "The ItemType schema"
+    },
+    "ParentId": {
+      "$id": "#/properties/ParentId",
+      "type": "null",
+      "title": "The ParentId schema"
+    },
+    "Collapsed": {
+      "$id": "#/properties/Collapsed",
+      "type": "boolean",
+      "title": "The Collapsed schema"
+    },
+    "ItemOrder": {
+      "$id": "#/properties/ItemOrder",
+      "type": "number",
+      "title": "The ItemOrder schema"
+    },
+    "Children": {
+      "$id": "#/properties/Children",
+      "type": "array",
+      "title": "The Children schema"
+    },
+    "IsProjectShared": {
+      "$id": "#/properties/IsProjectShared",
+      "type": "boolean",
+      "title": "The IsProjectShared schema"
+    },
+    "ProjectShareOwnerName": {
+      "$id": "#/properties/ProjectShareOwnerName",
+      "type": "null",
+      "title": "The ProjectShareOwnerName schema"
+    },
+    "ProjectShareOwnerEmail": {
+      "$id": "#/properties/ProjectShareOwnerEmail",
+      "type": "null",
+      "title": "The ProjectShareOwnerEmail schema"
+    },
+    "IsShareApproved": {
+      "$id": "#/properties/IsShareApproved",
+      "type": "boolean",
+      "title": "The IsShareApproved schema"
+    },
+    "IsOwnProject": {
+      "$id": "#/properties/IsOwnProject",
+      "type": "boolean",
+      "title": "The IsOwnProject schema"
+    },
+    "LastSyncedDateTime": {
+      "$id": "#/properties/LastSyncedDateTime",
+      "type": "string",
+      "title": "The LastSyncedDateTime schema",
+      "examples": [
+        "/Date(1624583717173)/"
+      ]
+    },
+    "LastUpdatedDate": {
+      "$id": "#/properties/LastUpdatedDate",
+      "type": "string",
+      "title": "The LastUpdatedDate schema",
+      "examples": [
+        "/Date(1624583717157)/"
+      ]
+    },
+    "Deleted": {
+      "$id": "#/properties/Deleted",
+      "type": "boolean",
+      "title": "The Deleted schema"
+    },
+    "SyncClientCreationId": {
+      "$id": "#/properties/SyncClientCreationId",
+      "type": "null",
+      "title": "The SyncClientCreationId schema"
+    }
+  }
+}
